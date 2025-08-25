@@ -315,10 +315,6 @@ namespace Ilia {
                     dialog_pages[0] = new TrackerPage();
                     dialog_pages[0].initialize.begin(settings, arg_map, entry, this, this.wm_name, this.is_wayland);
                     break;
-                case "clipboard":
-                    dialog_pages[0] = new ClipboardPage ();
-                    dialog_pages[0].initialize.begin(settings, arg_map, entry, this, this.wm_name, this.is_wayland);
-                    break;
                 default:
                     stderr.printf("Unknown page type: %s\n", focus_page);
                     break;
@@ -333,7 +329,7 @@ namespace Ilia {
          * Creates pages for all generally usable pages
          */
         private int create_all_pages(HashTable<string, string ?> arg_map, string focus_page, ref uint start_page) {
-            int page_count = 7; // increased for clipboard page
+            int page_count = 6; // Total number of pages, including help
             dialog_pages = new DialogPage[page_count];
 
             dialog_pages[0] = new DesktopAppPage();
@@ -348,8 +344,6 @@ namespace Ilia {
             dialog_pages[4].initialize.begin(settings, arg_map, entry, this, this.wm_name, this.is_wayland);
             dialog_pages[5] = new TrackerPage();
             dialog_pages[5].initialize.begin(settings, arg_map, entry, this, this.wm_name, this.is_wayland);
-            dialog_pages[6] = new ClipboardPage ();
-            dialog_pages[6].initialize.begin(settings, arg_map, entry, this, this.wm_name, this.is_wayland);
             // last page, help, will be initialized later in init
 
             switch (focus_page.down()) {
